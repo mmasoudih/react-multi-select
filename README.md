@@ -1,54 +1,126 @@
-# React + TypeScript + Vite
+# React Multi-Select Component
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, customizable multi-select component built with React, TypeScript, and Vite. This component provides a rich user interface for selecting multiple options with features like search, custom option creation, and keyboard navigation.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🔍 Search functionality to filter options
+- ✨ Custom option creation support
+- ⌨️ Keyboard navigation
+- 🎨 Customizable styling
+- 📱 Responsive design
+- 🧩 TypeScript support
+- 🎯 Maximum selection limit
+- 🚫 Disabled state support
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# Clone the repository
+git clone https://github.com/mmasoudih/react-multi-select.git
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+# Navigate to the project directory
+cd react-multi-select
+
+# Install dependencies
+pnpm install
+
+# Start the development server
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Usage
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```tsx
+import { MultiSelect } from './components/MultiSelect';
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+const options = [
+  { value: '1', label: 'Option 1' },
+  { value: '2', label: 'Option 2' },
+  { value: '3', label: 'Option 3' },
+];
+
+function App() {
+  const [selectedValues, setSelectedValues] = useState<string[]>([]);
+
+  return (
+    <MultiSelect
+      options={options}
+      value={selectedValues}
+      onChange={setSelectedValues}
+      placeholder="Select options..."
+      maxSelections={5}
+      allowCreate={true}
+    />
+  );
+}
 ```
+
+## Props
+
+| Prop            | Type                                          | Default       | Description                          |
+| --------------- | --------------------------------------------- | ------------- | ------------------------------------ |
+| `options`       | `Option[]`                                    | `[]`          | Array of selectable options          |
+| `value`         | `string[]`                                    | `[]`          | Array of selected option values      |
+| `onChange`      | `(values: string[]) => void`                  | -             | Callback when selection changes      |
+| `placeholder`   | `string`                                      | `'Select...'` | Placeholder text                     |
+| `className`     | `string`                                      | -             | Additional CSS class name            |
+| `disabled`      | `boolean`                                     | `false`       | Disable the component                |
+| `maxSelections` | `number`                                      | -             | Maximum number of selections allowed |
+| `allowCreate`   | `boolean`                                     | `false`       | Allow creating new options           |
+| `filterFn`      | `(option: Option, search: string) => boolean` | -             | Custom filter function               |
+
+## Development
+
+### Available Scripts
+
+- `pnpm dev` - Start development server
+- `pnpm build` - Build for production
+- `pnpm lint` - Run ESLint
+- `pnpm lint:fix` - Fix ESLint issues
+- `pnpm format` - Format code with Prettier
+- `pnpm preview` - Preview production build
+- `pnpm docs` - Generate documentation
+
+### Project Structure
+
+```
+src/
+├── components/
+│   └── MultiSelect/
+│       ├── MultiSelect.tsx
+│       └── MultiSelect.module.scss
+├── hooks/
+│   └── useMultiSelect.ts
+├── types/
+│   └── multi-select.ts
+├── App.tsx
+└── main.tsx
+```
+
+## Technologies Used
+
+- React 19
+- TypeScript
+- Vite
+- SCSS
+- Lucide React (for icons)
+- ESLint & Prettier (for code quality)
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- [Lucide React](https://lucide.dev/) for the beautiful icons
+- [Vite](https://vitejs.dev/) for the amazing build tool
+- [React](https://react.dev/) for the UI library
