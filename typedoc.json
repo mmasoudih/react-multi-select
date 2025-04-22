@@ -1,0 +1,17 @@
+{
+  "entryPoints": [
+    "src/components/MultiSelect/MultiSelect.tsx",
+    "src/types/multi-select.ts",
+    "src/hooks/useMultiSelect.ts"
+  ],
+  "out": "docs",
+  "theme": "markdown",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "readme": "README.md",
+  "name": "React Task Documentation",
+  "includeVersion": true,
+  "hideGenerator": true,
+  "plugin": ["typedoc-plugin-markdown"]
+}
